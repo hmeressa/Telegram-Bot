@@ -1,7 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
-const { Upload, Register, Help, Command } = require('./app/index');
+const { Upload, Register, Help, Command } = require('./app/main/index');
 const Setting = require('./app/setting/Setting');
-const { Menu } = require('./app/setting');
 require('dotenv').config();
 
 const App = async () => {
@@ -17,33 +16,37 @@ const App = async () => {
                 bot.sendMessage(chatId, 'Welcome to the bot!', {
                     reply_markup: {
                         keyboard: [
-                            ['Menu', "Setting"],
-                            ['Help', 'Register'],
-                            ['Commands', 'Upload'],
+                            ['Register', 'Upload'],
+                            ['Help', 'Commands'],
+                            ['Setting', "Back"],
                         ],
                         resize_keyboard: true
                     }
                 });
                 break;
+
             case Command().HELP:
                 await Help(bot, chatId)
                 break;
+
             case Command().REGISTER:
                 await Register(bot, chatId);
                 break;
+
             case Command().UPLOAD:
                 await Upload(bot, chatId);
                 break;
+
             case Command().SETTING:
                 await Setting(bot)
                 break;
+
             default:
                 bot.sendMessage(chatId, 'Command not recognized. Type /help for a list of available commands.', {
                     reply_markup: {
                         keyboard: [
-                            ['Setting'],
-                            ['Help', 'Menu'],
-                            ['Upload', 'Register'],
+                            ['Register', 'Upload'],
+                            ['Setting', 'Help'],
                         ],
                         resize_keyboard: true
                     }

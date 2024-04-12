@@ -5,7 +5,7 @@ const Menu = async (bot, chatId) => {
                 keyboard: [
                     ['Language', 'Theme'],
                     ['Password', 'Username'],
-                    ['Menu', 'Exit'],
+                    ['Back', 'Exit'],
                 ],
                 resize_keyboard: true
             }

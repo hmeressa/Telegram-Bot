@@ -1,4 +1,4 @@
-const { Command, Language, Theme, Username, Password, Menu } = require('../setting')
+const { Command, Language, Theme, Username, Password, Menu, Back, Exit } = require('../setting');
 require('dotenv').config();
 
 const Setting = async (bot) => {
@@ -8,9 +8,9 @@ const Setting = async (bot) => {
         Menu(bot, chatId);
         switch (messageText) {
 
-            // case Command().MENU:
-            //     await Menu(bot, chatId);
-            //     break;
+            case Command().MENU:
+                await Menu(bot, chatId);
+                break;
 
             case await Command().LANGUAGE:
                 await Language(bot, chatId);
@@ -28,21 +28,16 @@ const Setting = async (bot) => {
                 await Password(bot, chatId);
                 break;
 
+            case Command().BACK:
+                await Back();
+                break;
+
             case Command().EXIT:
                 await Exit(bot, chatId);
                 break;
 
             default:
-                bot.sendMessage(chatId, 'Command not recognized. Type /help for a list of available commands.', {
-                    reply_markup: {
-                        keyboard: [
-                            ['Start'],
-                            ['Help'],
-                            ['Upload']
-                        ],
-                        resize_keyboard: true
-                    }
-                });
+                await Menu(bot, chatId);
         }
     });
 }

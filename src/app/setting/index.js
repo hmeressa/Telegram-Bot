@@ -4,6 +4,7 @@ const Theme = require('./Theme');
 const Username = require('./Username')
 const Password = require('./Password');
 const Menu = require('./Menu');
+const Back = require('./Back');
 const Exit = require('./Exit');
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
     Username,
     Password,
     Menu,
+    Back,
     Exit
 }
